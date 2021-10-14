@@ -18,6 +18,10 @@ import edu.eci.pdsw.services.BlogServices;
 import edu.eci.pdsw.services.impl.BlogServicesImpl;
 
 
+import edu.eci.pdsw.persistence.CommentDAO;
+import edu.eci.pdsw.persistence.mybatisimpl.MyBatisCommentDAO;
+
+
 public class GuiceContextListener implements ServletContextListener {
 
 	public void contextDestroyed(ServletContextEvent servletContextEvent) {
@@ -41,6 +45,8 @@ public class GuiceContextListener implements ServletContextListener {
                 bind(BlogDAO.class).to(MyBatisBlogDAO.class);
 				// Users
                 bind(UserDAO.class).to(MyBatisUserDAO.class);
+				//Comment
+				bind(CommentDAO.class).to(MyBatisCommentDAO.class);
 			}
 		}
 

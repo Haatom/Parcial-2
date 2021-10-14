@@ -14,6 +14,9 @@ import edu.eci.pdsw.persistence.UserDAO;
 import edu.eci.pdsw.persistence.mybatisimpl.MyBatisBlogDAO;
 import edu.eci.pdsw.persistence.mybatisimpl.MyBatisUserDAO;
 import edu.eci.pdsw.services.impl.BlogServicesImpl;
+	
+import edu.eci.pdsw.persistence.CommentDAO;
+import edu.eci.pdsw.persistence.mybatisimpl.MyBatisCommentDAO;
 
 public class BlogServicesFactory {
 
@@ -32,6 +35,7 @@ public class BlogServicesFactory {
                 bind(BlogServices.class).to(BlogServicesImpl.class);
                 bind(UserDAO.class).to(MyBatisUserDAO.class);
                 bind(BlogDAO.class).to(MyBatisBlogDAO.class);
+                bind(CommentDAO.class).to(MyBatisCommentDAO.class);
             }
         });
     }

@@ -16,6 +16,7 @@ import edu.eci.pdsw.persistence.UserDAO;
 import edu.eci.pdsw.services.ServicesException;
 import edu.eci.pdsw.services.BlogServices;
 import java.util.List;
+import edu.eci.pdsw.persistence.CommentDAO;
 
 /**
  *
@@ -38,6 +39,9 @@ public class BlogServicesImpl implements BlogServices {
 	
 	@Inject
 	private UserDAO userDAO;
+
+	@Inject 
+	private CommentDAO commentDAO;
 
     @Override
 	public List<User> listUsers() throws ServicesException {
@@ -64,12 +68,19 @@ public class BlogServicesImpl implements BlogServices {
 
 	@Override
 	public List<Comment> searchCommentsByBlogTitle(String title) throws ServicesException {
-		throw new UnsupportedOperationException("Not supported yet.");
+		try {
+			return commentDAO.load(title);
+		} catch (PersistenceException ex) {
+            throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
+		}	
 	}
-
 	@Override
 	public List<Comment> searchOffensiveLanguageComments() throws ServicesException {
-		throw new UnsupportedOperationException("Not supported yet.");
+		try {
+			return commentDAO.searchOffensiveComments();
+		} catch (PersistenceException ex) {
+            throw new ServicesException("Search error:"+ex.getLocalizedMessage(), ex);
+		}
 	}
 
 	@Override

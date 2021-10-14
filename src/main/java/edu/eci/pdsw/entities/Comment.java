@@ -70,17 +70,14 @@ public class Comment {
 	}
 
 
-
 	public void setAuthor(User author) {
 		this.author = author;
 	}
 
 
-
 	public String getContent() {
 		return content;
 	}
-
 
 
 	public void setContent(String content) {
